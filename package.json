@@ -1,0 +1,30 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Test ",
+  "main": "index.js",
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "start:prod": "NODE_ENV=production nodemon index.js",
+    "debug": "ndb index.js",
+    "build": "webpack",
+    "ts-node": "ts-node --compiler-options '{\"module\": \"CommonJS\"}'"
+  },
+  "author": "Yurii Petrushyn",
+  "license": "ISC",
+  "dependencies": {
+    "@ngneat/falso": "^6.1.0",
+    "@prisma/client": "^4.4.0",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.20",
+    "prisma": "^4.4.0",
+    "sharp": "^0.31.0"
+  }
+}
