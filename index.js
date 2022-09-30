@@ -3,14 +3,16 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const userRouter = require("./routes/UserRoute");
 const positionsRouter = require("./routes/PositionRoute");
-const cors = require("cors")
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 dotenv.config({ path: "./.env" });
 const app = express();
 
-app.use(cors())
+app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 
 
