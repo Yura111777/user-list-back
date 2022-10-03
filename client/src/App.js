@@ -10,6 +10,8 @@ function App() {
   const [lastId, setlastId] = useState("");
   const [fileName, setfileName] = useState("");
   const [inputs, setInputs] = useState({});
+  const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
+
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -23,7 +25,7 @@ function App() {
   };
   useEffect(() => {
     try {
-      axios("http://localhost:8080/users", { method: "GET" }).then((res) => {
+      axios( apiUrl, { method: "GET" }).then((res) => {
         setUsers(res.data);
         setlastId(res.data[res.data.length-1].id);
       });
@@ -33,7 +35,7 @@ function App() {
   }, []);
 
   const showMore = async () => {
-    const data = await axios("http://localhost:8080/users", {
+    const data = await axios(apiUrl, {
       method: "GET",
       params: {
         id: lastId,
@@ -54,7 +56,7 @@ function App() {
     for ( var key in inputs ) {
       data.append(key, inputs[key]);
   }
-    const res = await axios("http://localhost:8080/users", {
+    const res = await axios(apiUrl, {
       method: "POST",
       data,
     });
