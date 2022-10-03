@@ -5,9 +5,15 @@ const userRouter = require("./routes/UserRoute");
 const positionsRouter = require("./routes/PositionRoute");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const path = require('path');
+
+
 
 dotenv.config({ path: "./.env" });
 const app = express();
+
+
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.use(cors());
 app.use(cookieParser());
