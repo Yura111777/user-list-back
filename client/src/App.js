@@ -30,6 +30,7 @@ function App() {
     try {
       axios( apiUrl, { method: "GET" }).then((res) => {
         setUsers(res.data);
+        console.log(res.data)
         setlastId(res.data[res.data.length-1].id);
       });
     } catch (error) {
