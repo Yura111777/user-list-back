@@ -10,7 +10,7 @@ function App() {
   const [lastId, setlastId] = useState("");
   const [fileName, setfileName] = useState("");
   const [inputs, setInputs] = useState({});
-  const REACT_APP_PROD_API_URL='https://633a90a70f3c381c4e5afb9e--bejewelled-macaron-62e8d9.netlify.app/users'
+  const REACT_APP_PROD_API_URL='https://userlist-back.herokuapp.com/users'
   const REACT_APP_DEV_API_URL="http://localhost:8080/users"
   const apiUrl = process.env.NODE_ENV === 'production' ? REACT_APP_PROD_API_URL : REACT_APP_DEV_API_URL;
 
