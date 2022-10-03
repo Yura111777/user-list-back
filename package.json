@@ -10,7 +10,7 @@
     "start": "nodemon index.js",
     "start:prod": "NODE_ENV=production nodemon index.js",
     "debug": "ndb index.js",
-    "build": "cd client && npm install && node prisma/seed.js && npm run build",
+    "build": "cd client && npm install  && npm run build",
     "ts-node": "ts-node --compiler-options '{\"module\": \"CommonJS\"}'"
   },
   "author": "Yurii Petrushyn",
