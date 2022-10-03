@@ -8,8 +8,8 @@ router.post(
   "/",
   multer().single("photo"),
   userController.createUser,
-  userController.resizeUserPhoto,
-  userController.loadImage
+  // userController.resizeUserPhoto,
+  // userController.loadImage
 );
 router.get("/", userController.getUsers);
 router.get("/:id", userController.getUser);

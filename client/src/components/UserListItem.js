@@ -4,7 +4,7 @@ const UserListItem = ({img, name, email, positions}) => {
     return (
         <li>
             <div className="flex">
-                <img src={`./img/users/${img ? img : 'default.png'}`} alt="user avatar" />
+                <img src={img === 'default.png' ?  `./img/users/${img}`  : img} alt="user avatar" />
                 <div className="info">
                     <span className="name">
                         {name}

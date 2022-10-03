@@ -4,17 +4,20 @@ import UserListItem from "./components/UserListItem";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import SimpleFileUpload from "react-simple-file-upload";
+
 function App() {
   const [users, setUsers] = useState([]);
   const [active, setActive] = useState(true);
   const [lastId, setlastId] = useState("");
   const [fileName, setfileName] = useState("");
   const [inputs, setInputs] = useState({});
+  const [file, setFile] = useState();
   const REACT_APP_PROD_API_URL='https://userlist-back.herokuapp.com/users'
   const REACT_APP_DEV_API_URL="http://localhost:8080/users"
   const apiUrl = process.env.NODE_ENV === 'production' ? REACT_APP_PROD_API_URL : REACT_APP_DEV_API_URL;
 
-  console.log(process.env.NODE_ENV)
+ 
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -28,6 +31,7 @@ function App() {
   };
   useEffect(() => {
     try {
+      // eslint-disable-next-line
       axios( apiUrl, { method: "GET" }).then((res) => {
         setUsers(res.data);
         console.log(res.data)
@@ -60,11 +64,16 @@ function App() {
     for ( var key in inputs ) {
       data.append(key, inputs[key]);
   }
+    data.append('img', file)
     const res = await axios(apiUrl, {
       method: "POST",
       data,
     });
-    console.log(res)
+    axios( apiUrl, { method: "GET" }).then((res) => {
+      setUsers(res.data);
+      console.log(res.data)
+      setlastId(res.data[res.data.length-1].id);
+    });
   };
   return (
     <div className="App">
@@ -88,8 +97,11 @@ function App() {
             name="position"
             placeholder="Job title"
           />
-          <input onChange={handleChange} type="file" name="photo" id="file" />
-          <label htmlFor="file">Load image  <span>{fileName}</span></label>
+           <SimpleFileUpload
+        apiKey="584febba5229129715752516aaf76bd1"
+        data-resize-width="70" data-resize-height="70"
+        onSuccess={setFile}
+      />
           <button type="submit">Submit</button>
         </form>
         <ul>

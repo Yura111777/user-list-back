@@ -31,7 +31,7 @@ const filterObj = (obj, ...allowedFields) => {
 
 exports.createUser = catchAsync(async (req, res, next) => {
   const prisma = new PrismaClient();
-  const data = filterObj(req.body, "name", "email");
+  const data = filterObj(req.body, "name", "email", "img");
   const user = await prisma.user.create({
     data,
   });
